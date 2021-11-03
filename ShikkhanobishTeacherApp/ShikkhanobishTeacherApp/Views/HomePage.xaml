@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model" 
+             x:Class="ShikkhanobishTeacherApp.Views.HomePage">
+    <!--  x:DataType="viewmodel:HomeViewModel" !-->
+    <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
+
+        <Grid>
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1250"/>
+                    </Grid.RowDefinitions>
+                    <Grid BackgroundColor="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="40*"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="250"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="20*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width=".1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="0" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height=".01*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".7*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width=".7*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="blacklogo.png"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" Margin="0,10,0,0"/>
+                                <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Flat" TextColor="Red" BackgroundColor="#50FFB5B5" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
+
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".6*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#B0B0B0" Margin="10,0,0,0" FontSize="11"/>
+                                <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="#3B3B3B">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding amount}"/>
+                                            <Span Text=" Taka"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <material:MaterialButton Text="Withdraw"  ButtonType="Flat" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#05A422"  BackgroundColor="#B0FFBE" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Column="0" Grid.Row="0" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
+                                    <material:MaterialButton Text="Take Test" ButtonType="Flat" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" BackgroundColor="#50B0B9FF" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
+                                    </material:MaterialButton>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="monetization.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="2"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Monetization Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
+
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="0" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="4"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
+                                    <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
+
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="totalmin.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="4"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Total Minute" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding totalMin}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="favourite.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="5"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Favourite Teacher" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding favTeacher}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                                    <material:MaterialButton Text="See All" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ButtonType="Text" FontSize="11" PressedBackgroundColor="#20000000" Command="{Binding favList}" IsVisible="{Binding favTeacherSeeVisibility}"/>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="report.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="6"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
+
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="2" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="tuition.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="7"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="Total Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="rating.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Total Starts" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding avgRattingShow}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="15" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="Avg. Ratting" Grid.Column="1" Grid.Row="3" FontSize="11" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="5 Star" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="4 Star" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="3 Star" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="2 Star" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="1 Star" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+
+                                        <Label Text="{Binding star5}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star4}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star3}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star2}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star1}" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                            <Frame BackgroundColor="#80000000" Grid.Row="3" Grid.Column="1" HasShadow="False"/>
+
+                            <Grid Grid.Row="4" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Frame BackgroundColor="#7C3AFF" Grid.Row="0" HasShadow="False"/>
+                                <Label Text="Updates About Teachers" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Margin="10,0,0,0" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding appversion}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="0" Margin="0,0,10,0" TextColor="White" FontAttributes="Bold" FontSize="12"/>
+                                <ListView ItemsSource="{Binding updateList}" Grid.Row="1" RowHeight="100" SeparatorColor="Black">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30"/>
+                                                        <RowDefinition Height="70"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,10,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding title}"  FontAttributes="Bold"/>
+                                                                <Span Text=" Date: " FontSize="11"/>
+                                                                <Span Text="{Binding updateTdate}" FontSize="11"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Text="{Binding description}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,10,0,0" FontSize="12"/>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                            
+                            <Frame BackgroundColor="#80000000" Grid.Row="5" Grid.Column="1" HasShadow="False"/>
+
+                            <Grid Grid.Row="6" Grid.RowSpan="3" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                                <material:MaterialButton ButtonType="Text" Text="Edit Tags" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" Command="{Binding goEditTags}"/>
+
+                                <Frame BackgroundColor="#10000000" Grid.Row="1" Grid.ColumnSpan="5" CornerRadius="10"/>
+
+                                <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
+                                <Label Text="{Binding groupNameSch}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+                                <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+                                <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="5" CornerRadius="10"/>
+
+                                <Label Text="College" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
+                                <Label Text="{Binding groupNameClg}" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+                                <Label Text="{Binding sub4}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub5}" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub6}" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub7}" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+                                <Label Text="{Binding sub8}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+
+                            </Grid>
+
+
+
+                          
+
+
+
+                            <Grid Grid.Row="9" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame BackgroundColor="#90C0FFCB" Grid.ColumnSpan="2" CornerRadius="10" HasShadow="False"/>
+                                <Label Text="Let us know any bug or suggestion" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
+                                <material:MaterialButton Text="Feedback" ButtonType="Text" Grid.Column="1" FontSize="11" TextColor="#00911A" Clicked="MaterialButton_Clicked"/>
+                            </Grid>
+
+                        </Grid>
+                        <Grid  IsVisible="{Binding regMsgVisiblity}" BackgroundColor="#50000000">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="346"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="1" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="346"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height=".4*"/>
+                                </Grid.RowDefinitions>
+                                <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
+                                <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFit"/>
+                                <Label Text="{Binding proMsgText}" Grid.Row="1" Margin="20"/>
+                                <material:MaterialButton Text="OK" ButtonType="Text" Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Margin="10" Command="{Binding popOutRegMsgVisiblility}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </ScrollView>
+            <!--Tuition Found-->          
+            <Grid BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding foundInfoVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".7*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.RowSpan="7" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                    <Label Text="{Binding HRTimer}" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="14" Margin="0,0,10,0"/>
+                    <Image Source="favourite.png" Grid.Row="0" Grid.RowSpan="7" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" Opacity=".1" IsVisible="{Binding isfavTeacher}"/>
+                    <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label Text="This student added you as a favourite teacher!" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End" FontSize="12" IsVisible="{Binding isfavTeacher}"/>
+                    <Label Text="{Binding HRStudentName}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
+                    <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" Margin="15,0,15,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Class: "/>
+                                <Span Text="{Binding HRClass}" FontAttributes="Bold"/>
+                                <Span Text=" | "/>
+                                <Span Text="Subject: "/>
+                                <Span Text="{Binding HRSubject}" FontAttributes="Bold"/>
+                                <Span Text=" | "/>
+                                <Span Text="Chapter: "/>
+                                <Span Text="{Binding HRChapter}" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{Binding HRDescription}" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Start" FontSize="12"/>
+                    <Label Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Payment: " FontSize="12"/>
+                                <Span Text="{Binding HRCost}" FontAttributes="Bold"/>
+                                <Span Text=" (Include 20% system cost)" FontSize="11"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
+                    <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White" Command="{Binding AcceptHRCmd}"/>
+                    <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7" Command="{Binding DeclineHRCmd}"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding connectingstudentVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.Row="1" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                    <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
+                </Grid>
+            </Grid>
+            <!--Tuition Found-->
+
+            <!--Favourite Student-->          
+            <Grid  BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popOutfavteacherList}"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".01*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
+                    <Label Text="List of studnet who added you as a favourite teacher" Grid.Row="0" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Frame BackgroundColor="Black" Grid.Row="1" HasShadow="False"/>
+                    <ListView ItemsSource="{Binding favteacherList}" Grid.Row="2"  RowHeight="50" SeparatorColor="Black">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding studentName}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <!--Favourite Student-->
+            
+            <!--Withdraw -->
+            <Grid IsVisible="{Binding withdrawVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
+                </Frame>
+
+                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".7*"/>
+                        <RowDefinition Height=".001*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".7*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".1*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width=".1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+                    <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
+                    <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                    <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
+                    <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
+                    <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
+                    <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
+                    <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
+                </Grid>
+                <!--Withdraw-->
+
+            </Grid>
+
+        </Grid>
+        
+       
+       
+            
+       
+    </RefreshView>
+  
+    
+</ContentPage>

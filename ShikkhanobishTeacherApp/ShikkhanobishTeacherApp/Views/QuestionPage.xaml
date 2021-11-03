@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="ShikkhanobishTeacherApp.Views.QuestionPage">
+    <Grid>
+        <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=White}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <material:MaterialLabel Text="Teacher Test" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
+
+            <material:MaterialCard Grid.Row="1" Grid.Column="1" Elevation="10"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <material:MaterialCard BackgroundColor="#2B81E3" Grid.Row="0" Elevation="5"/>
+
+                <material:MaterialCard x:Name="opone" BackgroundColor="Transparent" Grid.Row="1" HasShadow="False"/>
+                <material:MaterialCard x:Name="optwo" BackgroundColor="Transparent" Grid.Row="2" HasShadow="False"/>
+                <material:MaterialCard x:Name="opthree" BackgroundColor="Transparent" Grid.Row="3" HasShadow="False"/>
+                <material:MaterialCard x:Name="opfour" BackgroundColor="Transparent" Grid.Row="4" HasShadow="False"/>
+
+
+                <Label x:Name="qs"  Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=White, Dark=White}"/>
+
+                <Label x:Name="optxto"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtt"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtth"  Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtf"  Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="1" ButtonType="Text" Clicked="Button_Clicked"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="2" ButtonType="Text" Clicked="Button_Clicked_1"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="3" ButtonType="Text" Clicked="Button_Clicked_2"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="4" ButtonType="Text" Clicked="Button_Clicked_3"/>
+
+                <material:MaterialButton x:Name="nextBtn" Text="Next" ButtonType="Text" Grid.Row="5" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold"  Clicked="nextBtn_Clicked"/>
+
+                <ProgressBar x:Name="prgsbar" Progress=".5" ProgressColor="#7431EA" Grid.Row="6"/>
+                <Label x:Name="questionCountTxt"  Grid.Row="6" HorizontalOptions="Center" VerticalOptions="End" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
+
+            </Grid>
+        </Grid>
+        <Grid x:Name="congrid" BackgroundColor="#50000000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="conimage.jpg" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFit" Grid.Column="0" Grid.ColumnSpan="3"/>
+                <material:MaterialButton Text="Go To Dashboard" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" FontSize="12" Clicked="MaterialButton_Clicked"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+</ContentPage>
