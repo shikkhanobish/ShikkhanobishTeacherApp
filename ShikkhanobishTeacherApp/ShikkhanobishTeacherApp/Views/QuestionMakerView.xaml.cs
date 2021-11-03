@@ -24,6 +24,7 @@ namespace ShikkhanobishTeacherApp.Views
             websrc.Source = "https://makequestion.shikkhanobish.com/" + StaticPageForPassingData.thisTeacher.teacherID;
             teacherName.Text = "Teacher Name: "+StaticPageForPassingData.thisTeacher.name;
             ConnectToRealTimeApiServer();
+
         }
         public async Task EndOrBackBtn()
         {
