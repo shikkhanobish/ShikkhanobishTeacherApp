@@ -13,7 +13,11 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
-
+    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png">
+        <x:Arguments>
+            <local:TuitionLog />
+        </x:Arguments>
+    </NavigationPage>
     <NavigationPage Title="Home" IconImageSource="icon_about.png" >
         <x:Arguments>
             <local:HomePage />
@@ -29,11 +33,7 @@
             <local:QuestionMakerView />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png">
-        <x:Arguments>
-            <local:TuitionLog />
-        </x:Arguments>
-    </NavigationPage>
+   
 
 
 
