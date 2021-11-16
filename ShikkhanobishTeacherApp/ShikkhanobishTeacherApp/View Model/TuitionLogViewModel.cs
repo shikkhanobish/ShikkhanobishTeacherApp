@@ -33,6 +33,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             while(i == 0)
             {
                 await GetTuitionLog();
+                await Task.Delay(1000);
             }
         }
        
@@ -88,7 +89,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return new Command<TuiTionLog>(async (scTuition) =>
                 {
-                    showTuitionInfo = true;
+                   
                     var trList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getTuitionRequestCount".GetJsonAsync<List<TutionRequestCount>>();
                     scTuition.teacherNameList = new List<Teacher>();
                     foreach (var tcount in trList)
@@ -99,10 +100,19 @@ namespace ShikkhanobishTeacherApp.View_Model
                             scTuition.teacherNameList.Add(twithID);
                         }
                     }
-                   
+                   if(scTuition.teacherNameList.Count > 0)
+                    {
+                        scTuition.pendingTeacherID = scTuition.teacherNameList.Count;
+                        scTuition.isPendingTeacherAvailable = true;
+                    }
                     selectedTuition = scTuition;
+                    showTuitionInfo = true;
                 });
             }
+        }
+        private void PerformpopoutInfo()
+        {
+            showTuitionInfo = false;
         }
         private void PerformownTagsCmd()
         {
@@ -216,5 +226,21 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public TuiTionLog selectedTuition { get => selectedTuition1; set => SetProperty(ref selectedTuition1, value); }
 
+        private Command popoutInfo1;
+
+        public ICommand popoutInfo
+        {
+            get
+            {
+                if (popoutInfo1 == null)
+                {
+                    popoutInfo1 = new Command(PerformpopoutInfo);
+                }
+
+                return popoutInfo1;
+            }
+        }
+
+        
     }
 }
