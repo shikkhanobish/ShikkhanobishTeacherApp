@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,12 @@ namespace ShikkhanobishTeacherApp.View_Model
         private int sec = 5;
         public List<TuiTionLog> lList = new List<TuiTionLog>();
         private bool isCallAgain;
+        HubConnection _connection = null;
+        string url = "https://shikkhanobishRealTimeAPi.shikkhanobish.com/ShikkhanobishHub";
         public TuitionLogViewModel()
         {
             ownTag = true;
+            ConnectToRealTimeApiServer();
             showTuitionInfo = false;
             GetTuitionLog();
             getStudentNumber();
@@ -146,7 +150,46 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return qsCmd1;
             }
         }
+        public async Task ConnectToRealTimeApiServer()
+        {
+            _connection = new HubConnectionBuilder()
+                 .WithUrl(url)
+                 .Build();
+            await _connection.StartAsync();
 
+
+            _connection.Closed += async (s) =>
+            {
+                await _connection.StartAsync();
+            };
+
+           
+            _connection.On<string>("realTimetuitionNotiofication", async (tuitionID) =>
+            {
+                var lList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getTuiTionLogNeW".GetJsonAsync<List<TuiTionLog>>();
+                foreach (var tuition in lList)
+                {
+                    if(tuition.tuitionLogID == tuitionID)
+                    {
+                        if (tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub1 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub2 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub3 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub4 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub5 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub6 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub7 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub8 ||
+                        tuition.subjectID == StaticPageForPassingData.thisTeacherCourseList.sub9)
+                        {
+                            var sh = new ShowNotification();
+                            await sh.Show("New Tuition Available");
+                        }
+                    }
+
+                }
+            });
+
+        }
         private async Task PerformqsCmd()
         {
             await MaterialDialog.Instance.AlertAsync(message: "টিউশন লগ উইন্ডোতে আপনি লাইভ দেখতে পারবেন কোন সাবজেক্টের উপর টিউশন কল হচ্ছে! যা আপনার টিউশন পাওয়ার সম্ভবনা বাড়িয়ে দিবে কয়েকগুন।");
