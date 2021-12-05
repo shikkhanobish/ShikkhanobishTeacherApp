@@ -1,6 +1,7 @@
 ﻿using Flurl.Http;
 using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
+using ShikkhanobishTeacherApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,21 @@ namespace ShikkhanobishTeacherApp.View_Model
             isCallAgain = true;
             PerformownTagsCmd();
             StartTimer();
+            TuitionEvent evetn = new TuitionEvent();
+            StaticPageForPassingData.regEvent = evetn;
+            evetn.clickEvent += (s, args) =>
+            {
+                CallForChoice(args);
+            };
 
+        }
+
+        public async Task CallForChoice(CustomEventArgs thisArgs)
+        {
+            var actions = new string[] { "Yes", "No" };
+            var result = await MaterialDialog.Instance.SelectActionAsync(title: thisArgs.name+ " Accepted your tuition request. Do you want to start tuition?",
+                                                         actions: actions);
+            Application.Current.MainPage.Navigation.PushModalAsync(new CallingPage(thisArgs.tuitionLogID));
         }
         public async Task StartTimer()
         {
