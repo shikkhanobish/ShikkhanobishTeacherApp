@@ -229,6 +229,9 @@
     <AndroidResource Include="Resources\drawable\makeqsicon.png" />
     <AndroidResource Include="Resources\drawable\logicon.png" />
     <AndroidResource Include="Resources\drawable\online.gif" />
+    <AndroidResource Include="Resources\drawable\takaicon.png" />
+    <AndroidResource Include="Resources\drawable\sendmsg.png" />
+    <AndroidResource Include="Resources\drawable\convo.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

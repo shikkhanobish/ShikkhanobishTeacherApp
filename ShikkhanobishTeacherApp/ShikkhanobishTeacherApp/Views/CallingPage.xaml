@@ -7,7 +7,7 @@
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="260"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -29,8 +29,8 @@
             <Frame Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#09000000" CornerRadius="10"/>
             <Frame Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#09000000" CornerRadius="10"/>
             <Label Text="Subject" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="13"/>
-            <Label Text="{Binding subjectName}" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13" FontAttributes="Bold"  TextColor="#783AEF"/>
-            <Label Text="{Binding chapterName}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13" FontAttributes="Bold" TextColor="#3A8BEF"/>
+            <Label Text="{Binding subjectName}" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13" FontAttributes="Bold"  TextColor="#783AEF" Margin="5,0,5,0"/>
+            <Label Text="{Binding chapterName}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13" FontAttributes="Bold" TextColor="#3A8BEF" Margin="5,0,5,0"/>
             <Label Text="Subject" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="13"/>
         </Grid>
 
@@ -39,7 +39,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="1"/>
             </Grid.RowDefinitions>
             <Label Text="Description" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
@@ -52,16 +52,16 @@
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <material:MaterialCard  BorderColor="#A6A6A6" Grid.Column="0" Grid.RowSpan="2" BackgroundColor="White" HasShadow="False"/>
-                <Image Source="takaicon.png" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"  Aspect="AspectFit" Margin="0,12,0,0"/>
+                <Image Source="takaicon.png" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center"  Aspect="AspectFit" Margin="0,5,0,0"/>
                 <Label Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" >
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding cost}" FontAttributes="Bold" FontSize="12" TextColor="#0B9E3C"/>
-                            <Span Text=" Taka/Min" FontAttributes="Bold" FontSize="12" TextColor="#0B9E3C"/>
+                            <Span Text="{Binding cost}" FontAttributes="Bold" FontSize="11" TextColor="#0B9E3C"/>
+                            <Span Text=" Taka/Min" FontAttributes="Bold" FontSize="11" TextColor="#0B9E3C"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -73,6 +73,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="90"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -115,7 +116,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <material:MaterialCard BackgroundColor="Transparent" Grid.ColumnSpan="4" CornerRadius="10" BorderColor="#605500FF"/>
-                <Image Source="convo.gif" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" IsAnimationPlaying="True"/>
+               
                 <Label Text="Start Tuitino" TextColor="#5500FF" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold"/>
                 <material:MaterialCard Grid.ColumnSpan="4" IsClickable="True" BackgroundColor="Transparent" CornerRadius="10" />
             </Grid>
