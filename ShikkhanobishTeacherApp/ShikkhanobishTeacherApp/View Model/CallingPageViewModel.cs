@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
     public class CallingPageViewModel : BaseViewMode, INotifyPropertyChanged   
     {
+        List<OnCallingmsg> thisMockList = new List<OnCallingmsg>();
         string thistuitionLog { get; set; }
         CostClass Allcost { get; set; }
         List<Subject> allSubject { get; set; }
@@ -44,6 +47,23 @@ namespace ShikkhanobishTeacherApp.View_Model
             studntName = thislog.studentName;
             teacherName = StaticPageForPassingData.thisTeacher.name;
         }
+        private void PerformsendSms()
+        {
+            OnCallingmsg thisSms = new OnCallingmsg();
+            thisSms.msg = smstxt;
+            thisSms.name = StaticPageForPassingData.thisTeacher.name;
+            thisSms.lblColor = System.Drawing.Color.FromArgb(58, 17, 160);
+            thisSms.date = DateTime.Now.ToString("hh:mm tt");
+            thisSms.isOtherUser = false;
+            thisSms.isThisUser = true;
+            thisMockList.Add(thisSms);
+            RefreshMsg();
+        }
+        public void RefreshMsg()
+        {
+            smsList = new List<OnCallingmsg>();
+            smsList = thisMockList;
+        }
         public async Task GetAllCost()
         {
             Allcost = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetCost".GetJsonAsync<CostClass>();
@@ -75,5 +95,27 @@ namespace ShikkhanobishTeacherApp.View_Model
         private string teacherName1;
 
         public string teacherName { get => teacherName1; set => SetProperty(ref teacherName1, value); }
+        private List<OnCallingmsg> smsList1;
+
+        public List<OnCallingmsg> smsList { get => smsList1; set => SetProperty(ref smsList1, value); }
+
+        private string smstxt1;
+
+        public string smstxt { get => smstxt1; set => SetProperty(ref smstxt1, value); }
+
+        private Command sendSms1;
+
+        public ICommand sendSms
+        {
+            get
+            {
+                if (sendSms1 == null)
+                {
+                    sendSms1 = new Command(PerformsendSms);
+                }
+
+                return sendSms1;
+            }
+        }
     }
 }
