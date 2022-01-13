@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="ShikkhanobishTeacherApp.Views.AssignTeacher">
+
+    <ContentPage.BindingContext>
+        <viewmodel:AssignTeacherViewModel/>
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="10,20,*,10" ColumnDefinitions="10,*,10">
+
+        <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="*,*,*,*,*,*">
+            
+            <Label Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="Class" FontAttributes="Bold"></Label>
+            <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="Subject" FontAttributes="Bold"></Label>
+            <Label Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="Chapter" FontAttributes="Bold"></Label>
+            <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="Topic" FontAttributes="Bold"></Label>
+            <Label Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding purchaseRate}" FontAttributes="Bold"></Label>
+            
+        </Grid>
+        <ListView  ItemsSource="{Binding assignList}" Grid.Row="2" Grid.Column="1" RowHeight="100"  SeparatorColor="White" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*">
+                           
+                            <Label Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding topicID}"></Label>
+                            <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding chapterID}"></Label>
+                            <Label Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding name}"></Label>
+                            <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding description}"></Label>
+                            <Label Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding purchaseRate}"></Label>
+                            <Button Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center" Text="button"></Button>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate> 
+        </ListView>
+    </Grid>
+
+</ContentPage>
