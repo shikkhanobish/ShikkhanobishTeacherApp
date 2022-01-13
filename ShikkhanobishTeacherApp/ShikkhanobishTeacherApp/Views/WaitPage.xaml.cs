@@ -107,6 +107,7 @@ namespace ShikkhanobishTeacherApp.Views
                 StaticPageForPassingData.freomReg = false;                
                 if (pn != null && pass != null)
                 {
+                    await StaticPageForPassingData.ConnectToRealTimeApiServer();
                     await StaticPageForPassingData.GetALlTeacherInfo(pass, pn);
                     prgs.Progress = .9;
                     Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());

@@ -28,10 +28,11 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<SubList> thisSubList { get; set; }
         List<SubList> thisCrsList { get; set; }
         HubConnection _connection = null;
+        string url = "https://shikkhanobishRealTimeAPi.shikkhanobish.com/ShikkhanobishHub";
         List<favouriteTeacher> allfavTeacher = new List<favouriteTeacher>();
         int requestStudentID;
         string isNewUpdate;
-        string url = "https://shikkhanobishRealTimeAPi.shikkhanobish.com/ShikkhanobishHub";
+       
         #region Methods
         public HomeViewModel(bool fromReg)
         {
