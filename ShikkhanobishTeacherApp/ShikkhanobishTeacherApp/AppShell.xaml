@@ -13,27 +13,27 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
-    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png">
-        <x:Arguments>
-            <local:TuitionLog />
-        </x:Arguments>
-    </NavigationPage>
+
     <NavigationPage Title="Home" IconImageSource="icon_about.png" >
         <x:Arguments>
             <local:HomePage />
         </x:Arguments>
     </NavigationPage>
+
     <NavigationPage Title="Profile" IconImageSource="icon_feed.png"  >
         <x:Arguments>
             <local:Profile />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="QS Maker" IconImageSource="makeqsicon.png"  >
+
+    <NavigationPage Title="TeacherLink" IconImageSource="icon_feed.png"  >
         <x:Arguments>
-            <local:QuestionMakerView />
+            <local:TeacherLink />
         </x:Arguments>
     </NavigationPage>
-   
+
+
+
 
 
 
