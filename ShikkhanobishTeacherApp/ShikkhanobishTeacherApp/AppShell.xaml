@@ -26,9 +26,9 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="AssignTeacher" IconImageSource="icon_feed.png"  >
+    <NavigationPage Title="TeacherLink" IconImageSource="icon_feed.png"  >
         <x:Arguments>
-            <local:AssignTeacher />
+            <local:TeacherLink />
         </x:Arguments>
     </NavigationPage>
 
