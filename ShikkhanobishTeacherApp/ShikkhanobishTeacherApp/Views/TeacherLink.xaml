@@ -10,10 +10,10 @@
     </ContentPage.BindingContext>
     <Grid RowDefinitions="10,*,10" ColumnDefinitions="10,*,10">
         <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="30,20,10,Auto">
-            <Label Grid.Row="0" Text="Mahir Muzahid" FontFamily="Arial Black" TextColor="Black" FontAttributes="Bold" FontSize="28" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+            <Label Grid.Row="0" Text="{Binding teacherName}" FontFamily="Arial Black" TextColor="Black" FontAttributes="Bold" FontSize="28" HorizontalOptions="Start" VerticalOptions="Center"></Label>
             <Grid Grid.Row="1" ColumnDefinitions="65,*,90" >
-                <material:MaterialChip Grid.Column="0" Text="Class 11-12" BackgroundColor="Green" TextColor="White" FontSize="8" HorizontalOptions="Start" VerticalOptions="Center"></material:MaterialChip>
-                <material:MaterialChip Grid.Column="1" Text="Physics, Chemistrey, Biology, Physics First Paper" BackgroundColor="#8A2BE2" TextColor="White"  FontSize="8"  HorizontalOptions="Start" VerticalOptions="Center"></material:MaterialChip>
+                <material:MaterialChip Grid.Column="0" Text="{Binding className}" BackgroundColor="Green" TextColor="White" FontSize="8" HorizontalOptions="Start" VerticalOptions="Center"></material:MaterialChip>
+                <material:MaterialChip Grid.Column="1" Text="{Binding subjectList}" BackgroundColor="#8A2BE2" TextColor="White"  FontSize="8"  HorizontalOptions="Start" VerticalOptions="Center"></material:MaterialChip>
                 <material:MaterialChip Grid.Column="2" Text="12:00 PM - 04 PM" BackgroundColor="Crimson" TextColor="White"  FontSize="8" HorizontalOptions="Start" VerticalOptions="Center"></material:MaterialChip>
 
             </Grid>
@@ -22,27 +22,34 @@
             <Grid Grid.Row="3" ColumnDefinitions="*,50" Margin="10,0,10,0">
                 
                 <Grid Grid.Column="0" ColumnDefinitions="*,65">
-                    <Grid Grid.Column="0" RowDefinitions="25,20,20,20,20,20,20,60,20,50" >
-                        <Label Grid.Row="0" Text="Bangladesh And Global Studies" FontFamily="Arial Black" FontAttributes="Bold" FontSize="14" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Label Grid.Row="1" Text="Topic1" FontFamily="Arial Black" TextColor="Purple"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Label Grid.Row="2" Text="Topic2" FontFamily="Arial Black" TextColor="Green"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Label Grid.Row="3" Text="Topic3" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Label Grid.Row="4" Text="Topic4" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Label Grid.Row="5" Text="Topic4" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                        <Grid Grid.Row="7" RowDefinitions="20,20">
+                    <Grid Grid.Column="0" RowDefinitions="25,150,20,60,20,50" >
+                        <Label Grid.Row="0" Text="{Binding chapName}" FontFamily="Arial Black" FontAttributes="Bold" FontSize="14" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                        <ListView  ItemsSource="{Binding topicList}" Grid.Row="1" RowHeight="20"  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid >
+                                            <Label Text="{Binding name}" FontFamily="Arial Black" TextColor="Purple"  FontSize="12" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Grid Grid.Row="3" RowDefinitions="20,20">
                             <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto">
-                                <Label Grid.Column="0" Text="Azhar Ali" FontFamily="Arial Black" TextColor="Black" FontAttributes="Bold"  FontSize="14" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                <Label Grid.Column="0" Text="{Binding studentName}" FontFamily="Arial Black" TextColor="Black" FontAttributes="Bold"  FontSize="14" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                                 <Label Grid.Column="1" Text="Not Ready" FontFamily="Arial Black" TextColor="Gray"  FontSize="10" HorizontalOptions="Start" VerticalOptions="Center"></Label>
 
                             </Grid>
                             <Grid Grid.Row="1" ColumnDefinitions="Auto,10,Auto">
-                                <Label Grid.Column="0" Text="Class Name" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                <Label Grid.Column="0" Text="{Binding className}" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                                 <Label Grid.Column="1" Text="||" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                <Label Grid.Column="2" Text="Subject Name" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                <Label Grid.Column="2" Text="{Binding subName}" FontFamily="Arial Black" TextColor="Gray"  FontSize="12" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                  
                             </Grid>
                         </Grid>
-                        <Grid Grid.Row="8" RowDefinitions="20,35">
+                        <Grid Grid.Row="4" RowDefinitions="20,35">
                             <Label Grid.Row="0" Text="Link: link.Com" FontFamily="Arial Black" TextColor="Black"  FontSize="12" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center"></Label>
                             <Grid Grid.Row="1" ColumnDefinitions="100">
                                 <Button Grid.Column="0" Text="Add Link" BackgroundColor="#00CED1" FontSize="12"></Button>

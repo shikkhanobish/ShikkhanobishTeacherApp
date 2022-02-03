@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShikkhanobishTeacherApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace ShikkhanobishTeacherApp.Views
         public TeacherLink()
         {
             InitializeComponent();
+            //BindingContext = new TeacherLinkViewModel(chapid);
             NavigationPage.SetHasNavigationBar(this, false);
         }
     }
